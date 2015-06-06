@@ -1,9 +1,12 @@
 package com.github.gomi.fpj;
 
+import com.pholser.junit.quickcheck.ForAll;
 import org.junit.Test;
+import org.junit.contrib.theories.Theory;
 
 import static com.github.gomi.fpj.P.$;
 import static org.hamcrest.core.Is.is;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
 public class P2Test {
@@ -39,4 +42,15 @@ public class P2Test {
         assertThat($(1, "def")._2(), is("def"));
         assertThat($("abc", 2)._2(), is(2));
     }
+
+    @Theory
+    public void _1(@ForAll Object o1, @ForAll Object o2) {
+        assertEquals($(o1, o2)._1(), o1);
+    }
+
+    @Theory
+    public void _2(@ForAll Object o1, @ForAll Object o2) {
+        assertEquals($(o1, o2)._2(), o2);
+    }
+
 }
